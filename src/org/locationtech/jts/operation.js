@@ -1,5 +1,6 @@
 import BoundaryOp from './operation/BoundaryOp.js'
 import IsSimpleOp from './operation/IsSimpleOp.js'
+import OffsetCurve from "./operation/buffer/OffsetCurve.js"
 import * as buffer from './operation/buffer.js'
 import * as distance from './operation/distance.js'
 import * as linemerge from './operation/linemerge.js'
@@ -10,6 +11,7 @@ import * as union from './operation/union.js'
 import * as valid from './operation/valid.js'
 
 export {
+  OffsetCurve,
   BoundaryOp,
   IsSimpleOp,
   buffer,

@@ -80,6 +80,11 @@ export default class LineSegment {
     const coord = new Coordinate(offsetx, offsety)
     return coord
   }
+  offset(offsetDistance) {
+    const offset0 = this.pointAlongOffset(0, offsetDistance);
+    const offset1 = this.pointAlongOffset(1, offsetDistance);
+    return new LineSegment(offset0, offset1);
+  }
   setCoordinates() {
     if (arguments.length === 1) {
       const ls = arguments[0]
