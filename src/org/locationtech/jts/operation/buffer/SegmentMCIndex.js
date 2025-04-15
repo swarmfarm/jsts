@@ -27,16 +27,16 @@ export default class SegmentMCIndex {
 
   query(env, action) {
     this._index.query(
-        env,
-        new (class {
+      env,
+      new (class {
         get interfaces_() {
-            return [ItemVisitor];
+          return [ItemVisitor];
         }
         visitItem(item) {
-            const testChain = item;
-            testChain.select(env, action);
+          const testChain = item;
+          testChain.select(env, action);
         }
-        })()
+      })()
     );
   }
 }

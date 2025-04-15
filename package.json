@@ -1,5 +1,5 @@
 {
-  "name": "jsts",
+  "name": "@swarmfarm/jsts",
   "description": "A JavaScript library of spatial predicates and functions for processing geometry",
   "version": "2.12.1",
   "author": "Björn Harrtell <bjorn@wololo.org>",
@@ -34,11 +34,7 @@
     "fastpriorityqueue": "^0.7.5"
   },
   "type": "module",
-  "typesVersions": {
-    "*": {
-      "*": ["types/*"]
-    }
-  },
+  "types": "types/index.d.ts",
   "engines": {
     "node": ">= 18"
   },

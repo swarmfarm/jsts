@@ -1,3 +1,9 @@
 *.ast
 doc/jsts.js
 .babelrc
+testxml**
+test**
+.vscode**
+rollup.config.js
+tsconfig.json
+validationsuite**

@@ -27,9 +27,9 @@ export default class OffsetCurve {
     this.bufferParams = new BufferParameters();
     if (bufParams !== null) {
       let quadSegs = bufParams.getQuadrantSegments();
-      if (quadSegs < OffsetCurve.MIN_QUADRANT_SEGMENTS) {
+      if (quadSegs < OffsetCurve.MIN_QUADRANT_SEGMENTS) 
         quadSegs = OffsetCurve.MIN_QUADRANT_SEGMENTS;
-      }
+      
       this.bufferParams.setQuadrantSegments(quadSegs);
       this.bufferParams.setJoinStyle(bufParams.getJoinStyle());
       this.bufferParams.setMitreLimit(bufParams.getMitreLimit());
@@ -67,10 +67,10 @@ export default class OffsetCurve {
   }
 
   toLineString(geom){
-    if (geom instanceof LinearRing) {
-        return geom.getFactory().createLineString(geom.getCoordinateSequence());
-      }
-      return geom;
+    if (geom instanceof LinearRing) 
+      return geom.getFactory().createLineString(geom.getCoordinateSequence());
+      
+    return geom;
   }
 
   static rawOffset(line, distance, bufParams = new BufferParameters()) {
@@ -84,24 +84,24 @@ export default class OffsetCurve {
   }
 
   computeCurve(lineGeom, distance) {
-    if (lineGeom.getNumPoints() < 2 || lineGeom.getLength() === 0.0) {
+    if (lineGeom.getNumPoints() < 2 || lineGeom.getLength() === 0.0) 
       return this.geomFactory.createLineString();
-    }
-    if (distance === 0) {
+    
+    if (distance === 0) 
       return lineGeom.copy();
-    }
-    if (lineGeom.getNumPoints() === 2) {
+    
+    if (lineGeom.getNumPoints() === 2) 
       return this.offsetSegment(lineGeom.getCoordinates(), distance);
-    }
+    
 
     const sections = this.computeSections(lineGeom, distance);
 
     let offsetCurve;
-    if (this.isJoined) {
+    if (this.isJoined) 
       offsetCurve = OffsetCurveSection.toLine(sections, this.geomFactory);
-    } else {
+    else 
       offsetCurve = OffsetCurveSection.toGeometry(sections, this.geomFactory);
-    }
+    
     return offsetCurve;
   }
 
@@ -112,9 +112,9 @@ export default class OffsetCurve {
       this.bufferParams
     );
     const sections = [];
-    if (rawCurve.length === 0) {
+    if (rawCurve.length === 0) 
       return sections;
-    }
+    
 
     const bufferPoly = OffsetCurve.getBufferOriented(
       lineGeom,
@@ -140,9 +140,9 @@ export default class OffsetCurve {
   static getBufferOriented(geom, distance, bufParams) {
     const buffer = BufferOp.bufferOp(geom, Math.abs(distance), bufParams);
     let bufferPoly = OffsetCurve.extractMaxAreaPolygon(buffer);
-    if (distance < 0) {
+    if (distance < 0) 
       bufferPoly = bufferPoly.reverse();
-    }
+    
     return bufferPoly;
   }
 
@@ -238,9 +238,9 @@ export default class OffsetCurve {
       sections.push(section);
       sectionStart = this.findSectionStart(rawCurveLoc, sectionEnd);
 
-      if (sectionCount++ > ringPts.length) {
+      if (sectionCount++ > ringPts.length) 
         throw new Error("Too many sections for ring - probable bug");
-      }
+      
     } while (sectionStart !== startIndex && sectionEnd !== startIndex);
   }
 
@@ -253,9 +253,9 @@ export default class OffsetCurve {
         continue;
       }
       const prev = this.prev(start, loc.length);
-      if (loc[prev] === OffsetCurve.NOT_IN_CURVE) {
+      if (loc[prev] === OffsetCurve.NOT_IN_CURVE) 
         return start;
-      }
+      
       if (this.isJoined) {
         const locDelta = Math.abs(loc[start] - loc[prev]);
         if (locDelta > 1) return start;
