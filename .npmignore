@@ -7,3 +7,10 @@ test**
 rollup.config.js
 tsconfig.json
 validationsuite**
+.github**
+.nyc_output
+contrib**
+.editorconfig
+eslint.config.js
+*.txt
+npm_dist
